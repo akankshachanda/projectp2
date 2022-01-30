@@ -25,20 +25,16 @@ public class WelcomeServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 response.setContentType("text/html");
 	      PrintWriter out = response.getWriter();
-	      String name = request.getParameter("userName");
-	      out.print("Welcome" +name);
-	      out.close();
+	      out.print("<h1> welcome " + request.getParameter("name") + " Login Successful </h1>");
+	    		  }
 	}
 
-}
+

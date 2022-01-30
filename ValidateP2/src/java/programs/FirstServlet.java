@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java.programs.LoginDao;
+
 
 /**
  * Servlet implementation class FirstServlet
@@ -40,23 +40,24 @@ public class FirstServlet extends HttpServlet {
 		public void doPost(HttpServletRequest request, HttpServletResponse response)
 			     throws ServletException,IOException{
 			      response.setContentType("text/html");
-			      PrintWriter out = response.getWriter();
+			      String email = request.getParameter("email");
+			      String password = request.getParameter("password");
+			      RequestDispatcher rd = null;
+			      if(email.equalsIgnoreCase("akanksha") &&
+			      password.equals("akanksha@123")) {
+			      rd=request.getRequestDispatcher("SuccessServlet");
+			      rd.forward(request, response);
+			      }
+			      else {
+			    	  rd= request.getRequestDispatcher("index.html");
+			    	  PrintWriter out=response.getWriter();
+			    	  rd.include(request, response);
+	 out.print("<center> <span style = 'color:red'>In credentials!!</span> </center>");
+			    	  }
+			    	  }
 
-			      String name = request.getParameter("userName");
-			      String password = request.getParameter("userPassword");
 			      
-			     if(LoginDao.validate(name,password)){
-			    	 RequestDispatcher rd = request.getRequestDispatcher("Servlet2");
-			    	 rd.forward(request, response);
-			     }
-			     else{
-			    	 out.print("sprry username or password is error ");
-			    	 RequestDispatcher rd = request.getRequestDispatcher("index.html");
-			    	 rd.include(request, response);
-			     }
-			      
-			    
-			     }
+			     
 		
 	}
 
